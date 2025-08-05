@@ -1,0 +1,62 @@
+defaults:
+  - _self_
+  - data: null
+  - optim: null
+  - inr: null
+  - wandb: null
+
+data:
+  dir: "/scratch/hn98/sz6556/data"
+  dataset_name: "navier-stokes-1e-5"
+  ntrain: 1000
+  ntest: 200
+  sub_from : 1
+  sub_tr : 1 
+  sub_te : 1
+  seed: 123
+  same_grid: True
+  seq_inter_len : 20 
+  seq_extra_len : 0
+
+optim:
+  batch_size: 10 
+  batch_size_val: 
+  lr_inr : 1e-3
+  gamma_step : 0.9
+  lr_code : 0.01
+  weight_decay: 0
+  epochs : 5000
+
+wandb:
+  entity:
+  project: aroma
+  name: "ns1e-5"
+  id: 
+  dir: "/scratch/hn98/sz6556/results/AROMAmamba/ns1e-5/inr/simple_withdecoder"
+  sweep_id:
+  saved_checkpoint : True #False
+  checkpoint_path : "/scratch/hn98/sz6556/results/AROMAmamba/ns1e-5/inr/simple_withdecoder/ns1e-5.pt"
+  save_path: "/scratch/hn98/sz6556/results/AROMAmamba/ns1e-5/inr/simple_withdecoder"
+
+inr:
+  hidden_dim: 128
+  depth_inr: 3 #2
+  bottleneck_index: 0
+  latent_dim: 16
+  sample_posterior: True # autoencoder
+  kl_weight: 1e-5
+  dropout_sequence: 0.10
+  frequencies: [ 3, 4, 5 ]
+  max_pos_encoding_freq: 4
+  num_freq: 12
+  decoder_dim: 128
+  mlp_ratios: 4
+  patch_size: 2
+  H: 64
+  W: 64
+  num_mamba: 3
+  encode_geo: False
+  include_multi_pos: False
+  depatch_each_step: False
+  simple_decoder: True
+  use_mamba_decoder: True

@@ -1,0 +1,50 @@
+defaults:
+  - _self_
+  - data: null
+  - optim: null
+  - inr: null
+  - wandb: null
+
+data:
+  dir: "/scratch/hn98/sz6556/data"
+  dataset_name: "navier-stokes-1e-5" 
+  ntrain : 1000
+  ntest : 200
+  sub_from : 1
+  sub_tr : 1 #0.015625
+  sub_te : 1 #0.015625
+  seed: 123
+  same_grid: True
+  seq_inter_len: 20 
+  seq_extra_len : 0
+
+optim:
+  batch_size: 64
+  batch_size_val: 
+  lr : 1e-4
+  gamma_step : 0.9
+  lr_code : 0.01
+  weight_decay: 0
+  epochs : 2000
+  min_noise: 1e-3
+  threshold: 1.0
+
+wandb:
+  entity:
+  project: aroma
+  name: "ns1e-5-refiner"
+  id: 
+  dir: "/scratch/hn98/sz6556/results/AROMAmamba/ns1e-5/refiner/depth8/static"
+  sweep_id:
+  saved_checkpoint : True #False
+  checkpoint_path: "/scratch/hn98/sz6556/results/AROMAmamba/ns1e-5/inr/simpleMamba/ns1e-5.pt"
+  save_path: "/scratch/hn98/sz6556/results/AROMAmamba/ns1e-5/refiner/depth8/static"
+  resume_training: True
+  prev_checkpoint_path: "/scratch/hn98/sz6556/results/AROMAmamba/ns1e-5/refiner/depth8/static/ns1e-5-refiner.pt"
+
+model:
+  latent_size: 16 #1061
+  hidden_size: 128
+  depth: 8 #4
+  use_statistics: True
+
